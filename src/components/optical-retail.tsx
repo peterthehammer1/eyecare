@@ -56,7 +56,7 @@ export function OpticalRetail() {
             Transform Your Optical Department
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Our AI doesn't just manage your optical inventory—it optimizes every aspect of the retail experience 
+            Our AI doesn&apos;t just manage your optical inventory—it optimizes every aspect of the retail experience 
             to maximize revenue and patient satisfaction.
           </p>
         </div>
@@ -121,7 +121,7 @@ export function OpticalRetail() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                  <span className="font-medium">Today's Capture Rate</span>
+                  <span className="font-medium">Today&apos;s Capture Rate</span>
                   <Badge className="bg-green-600">78%</Badge>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">

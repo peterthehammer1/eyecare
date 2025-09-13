@@ -5,15 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, ArrowRight, Shield, Zap, Users } from "lucide-react";
 
-const benefits = [
-  "30-day free trial",
-  "No setup fees",
-  "HIPAA compliant",
-  "24/7 support",
-  "Easy migration",
-  "Cancel anytime"
-];
-
 const pricingPlans = [
   {
     name: "Starter",
@@ -67,7 +58,7 @@ export function CTA() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
-            🚀 Ready to Transform Your Practice?
+            �� Ready to Transform Your Practice?
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Start Your AI-Powered Eyecare Journey Today

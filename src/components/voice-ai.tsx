@@ -10,19 +10,19 @@ const voiceFeatures = [
     icon: Phone,
     title: "Natural Conversations",
     description: "Patients can book appointments, ask questions, and get care instructions through natural voice interactions.",
-    example: "\"I need to schedule an eye exam for next week\""
+    example: "I need to schedule an eye exam for next week"
   },
   {
     icon: Calendar,
     title: "Smart Scheduling",
     description: "AI understands complex scheduling requests and finds optimal appointment times based on availability and patient needs.",
-    example: "\"I need a comprehensive exam with dilation on a Tuesday morning\""
+    example: "I need a comprehensive exam with dilation on a Tuesday morning"
   },
   {
     icon: FileText,
     title: "Prescription Management",
     description: "Voice agents can explain prescriptions, process refills, and provide detailed care instructions.",
-    example: "\"Can you explain my new contact lens prescription?\""
+    example: "Can you explain my new contact lens prescription?"
   },
   {
     icon: MessageCircle,
@@ -40,7 +40,7 @@ const voiceFeatures = [
     icon: Mic,
     title: "Eyecare Specialized",
     description: "Trained specifically on ophthalmology and optometry terminology, procedures, and common patient questions.",
-    example: "\"What's the difference between myopia and astigmatism?\""
+    example: "What&apos;s the difference between myopia and astigmatism?"
   }
 ];
 
@@ -57,7 +57,7 @@ export function VoiceAI() {
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Transform patient interactions with AI voice agents trained specifically on eyecare terminology, 
-            procedures, and common patient needs. Built on Retell AI's advanced voice technology.
+            procedures, and common patient needs. Built on Retell AI&apos;s advanced voice technology.
           </p>
         </div>
         
@@ -79,7 +79,7 @@ export function VoiceAI() {
                   </CardDescription>
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <code className="text-sm text-gray-700 italic">
-                      "{feature.example}"
+                      &ldquo;{feature.example}&rdquo;
                     </code>
                   </div>
                 </CardContent>

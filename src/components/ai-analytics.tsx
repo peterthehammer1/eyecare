@@ -62,7 +62,7 @@ export function AIAnalytics() {
             Predictive Analytics That Drive Results
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Our AI doesn't just analyze data—it predicts outcomes, optimizes operations, 
+            Our AI doesn&apos;t just analyze data—it predicts outcomes, optimizes operations, 
             and helps you make decisions that improve patient care and grow your practice.
           </p>
         </div>

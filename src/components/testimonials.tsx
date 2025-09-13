@@ -18,7 +18,7 @@ const testimonials = [
     title: "Optometrist",
     clinic: "Clear Vision Clinic",
     image: "/avatars/michael-rodriguez.jpg",
-    content: "The voice AI integration is incredible. Patients love being able to call and book appointments naturally. It's like having a knowledgeable staff member available 24/7.",
+    content: "The voice AI integration is incredible. Patients love being able to call and book appointments naturally. It&apos;s like having a knowledgeable staff member available 24/7.",
     rating: 5
   },
   {
@@ -34,7 +34,7 @@ const testimonials = [
     title: "Ophthalmologist",
     clinic: "Retina Specialists Group",
     image: "/avatars/david-kim.jpg",
-    content: "The diagnostic integration is seamless. OCT scans are automatically analyzed, and the AI alerts us to potential issues we might have missed. It's like having a second opinion on every case.",
+    content: "The diagnostic integration is seamless. OCT scans are automatically analyzed, and the AI alerts us to potential issues we might have missed. It&apos;s like having a second opinion on every case.",
     rating: 5
   },
   {
@@ -42,7 +42,7 @@ const testimonials = [
     title: "Optical Manager",
     clinic: "Family Vision Center",
     image: "/avatars/lisa-thompson.jpg",
-    content: "The frame selection AI is amazing. Patients are happier with their choices, and we've seen a 40% reduction in remakes. The revenue impact has been incredible.",
+    content: "The frame selection AI is amazing. Patients are happier with their choices, and we&apos;ve seen a 40% reduction in remakes. The revenue impact has been incredible.",
     rating: 5
   },
   {
@@ -50,7 +50,7 @@ const testimonials = [
     title: "Optometrist",
     clinic: "Community Eye Care",
     image: "/avatars/robert-johnson.jpg",
-    content: "The predictive analytics help us optimize our schedule and reduce no-shows. We're seeing more patients and providing better care. This is the future of eyecare management.",
+    content: "The predictive analytics help us optimize our schedule and reduce no-shows. We&apos;re seeing more patients and providing better care. This is the future of eyecare management.",
     rating: 5
   }
 ];
@@ -79,7 +79,7 @@ export function Testimonials() {
                 </div>
                 
                 <blockquote className="text-gray-600 mb-6">
-                  "{testimonial.content}"
+                  &ldquo;{testimonial.content}&rdquo;
                 </blockquote>
                 
                 <div className="flex items-center space-x-3">
