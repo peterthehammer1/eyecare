@@ -10,7 +10,7 @@ A cutting-edge, AI-powered ophthalmology and optometry practice management platf
 - **Revenue Optimization**: AI identifies missed revenue opportunities and suggests optimal pricing strategies
 - **Optical Capture Rate**: Predict which patients are likely to purchase eyewear and optimize recommendations
 
-### Voice AI Integration (Retell AI)
+### Voice AI Integration (Nucleus AI)
 - **Natural Conversations**: Patients can book appointments, ask questions, and get care instructions through voice
 - **Eyecare Specialized**: Trained specifically on ophthalmology and optometry terminology
 - **Multi-Channel Support**: Seamless integration across phone, chat, and website
@@ -33,7 +33,7 @@ A cutting-edge, AI-powered ophthalmology and optometry practice management platf
 - **Frontend**: Next.js 14+ with TypeScript, Tailwind CSS, Shadcn/ui
 - **Backend**: Node.js with Express/Fastify, PostgreSQL with Prisma ORM
 - **AI Integration**: OpenAI GPT-4, Claude API, custom ML models
-- **Voice**: Full Retell AI integration with eyecare-specific training
+- **Voice**: Full Nucleus AI integration with eyecare-specific training
 - **Real-time**: WebSocket implementation for live updates
 - **Security**: HIPAA-compliant architecture, end-to-end encryption
 - **Infrastructure**: AWS/Google Cloud with auto-scaling, Redis for caching
@@ -96,11 +96,11 @@ NEXTAUTH_SECRET="your-secret-key"
 NEXTAUTH_URL="http://localhost:3000"
 OPENAI_API_KEY="your-openai-key"
 CLAUDE_API_KEY="your-claude-key"
-RETELL_API_KEY="your-retell-key"
+NUCLEUS_API_KEY="your-retell-key"
 ```
 
-### Retell AI Integration
-1. Sign up for Retell AI account
+### Nucleus AI Integration
+1. Sign up for Nucleus AI account
 2. Create a new voice agent
 3. Train the agent on eyecare-specific terminology
 4. Configure webhook endpoints for real-time updates
@@ -216,7 +216,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 1. **Built for Eyecare**: Designed specifically for ophthalmologists and optometrists
 2. **AI-First Approach**: Every feature powered by advanced AI
-3. **Voice Revolution**: Natural conversation handling with Retell AI
+3. **Voice Revolution**: Natural conversation handling with Nucleus AI
 4. **Revenue Focused**: Proven to increase revenue by 30%
 5. **Efficiency Gains**: Reduce administrative work by 70%
 6. **Patient Satisfaction**: Improve satisfaction scores by 40%

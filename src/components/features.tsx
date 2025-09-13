@@ -26,7 +26,7 @@ const features = [
   },
   {
     icon: Phone,
-    title: "Retell AI Voice Agents",
+    title: "Nucleus AI Voice Agents",
     description: "Natural conversation handling for appointments, prescriptions, and patient inquiries with eyecare-specific training.",
     category: "Patient Experience"
   },

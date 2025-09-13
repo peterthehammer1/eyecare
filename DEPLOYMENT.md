@@ -24,7 +24,7 @@ NEXTAUTH_SECRET=your-secret-key
 NEXTAUTH_URL=https://your-domain.vercel.app
 OPENAI_API_KEY=your-openai-key
 CLAUDE_API_KEY=your-claude-key
-RETELL_API_KEY=your-retell-key
+NUCLEUS_API_KEY=your-retell-key
 ```
 
 ### Option 2: Railway
@@ -118,23 +118,23 @@ npx prisma db seed
 - `NEXTAUTH_URL`: Your application URL
 - `OPENAI_API_KEY`: OpenAI API key for AI features
 - `CLAUDE_API_KEY`: Anthropic Claude API key
-- `RETELL_API_KEY`: Retell AI API key for voice features
+- `NUCLEUS_API_KEY`: Nucleus AI API key for voice features
 
 ### Optional Variables
 - `REDIS_URL`: Redis connection for caching
 - `SMTP_*`: Email configuration
 - `AWS_*`: File storage configuration
 
-## Retell AI Integration
+## Nucleus AI Integration
 
-1. **Sign up for Retell AI**
-   - Go to [retellai.com](https://retellai.com)
+1. **Sign up for Nucleus AI**
+   - Go to [nucleusai.com](https://nucleusai.com)
    - Create account and get API key
 
 2. **Create Voice Agent**
    - Create new agent in Retell dashboard
    - Configure for eyecare use case
-   - Set webhook URL: `https://your-domain.com/api/retell/webhook`
+   - Set webhook URL: `https://your-domain.com/api/nucleus/webhook`
 
 3. **Train Agent**
    - Upload eyecare-specific training data
