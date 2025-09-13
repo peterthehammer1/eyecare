@@ -1,0 +1,533 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User and Authentication
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  clinicId     String?
+  clinic       Clinic? @relation(fields: [clinicId], references: [id])
+  appointments Appointment[]
+  notes        ClinicalNote[]
+  prescriptions Prescription[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  DOCTOR
+  OPTOMETRIST
+  OPTICIAN
+  STAFF
+  PATIENT
+}
+
+// Clinic Management
+model Clinic {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  phone       String
+  email       String
+  website     String?
+  timezone    String   @default("America/New_York")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users         User[]
+  patients      Patient[]
+  appointments  Appointment[]
+  locations     Location[]
+  equipment     Equipment[]
+  frames        Frame[]
+  lenses        Lens[]
+  contactLenses ContactLens[]
+  insurancePlans InsurancePlan[]
+
+  @@map("clinics")
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  phone     String
+  clinicId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  clinic       Clinic        @relation(fields: [clinicId], references: [id])
+  appointments Appointment[]
+  equipment    Equipment[]
+
+  @@map("locations")
+}
+
+// Patient Management
+model Patient {
+  id                String   @id @default(cuid())
+  firstName         String
+  lastName          String
+  dateOfBirth       DateTime
+  gender            Gender
+  phone             String
+  email             String?
+  address           String
+  emergencyContact  String?
+  emergencyPhone    String?
+  insuranceId       String?
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  clinicId          String
+  clinic            Clinic            @relation(fields: [clinicId], references: [id])
+  appointments      Appointment[]
+  ocularHistory     OcularHistory[]
+  prescriptions     Prescription[]
+  contactLensFits   ContactLensFit[]
+  familyHistory     FamilyOcularHistory[]
+  insurance         InsurancePlan?    @relation(fields: [insuranceId], references: [id])
+
+  @@map("patients")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+// Ocular History and Clinical Data
+model OcularHistory {
+  id                    String   @id @default(cuid())
+  patientId             String
+  visitDate             DateTime
+  chiefComplaint        String?
+  visualAcuityOD        String?  // Right eye
+  visualAcuityOS        String?  // Left eye
+  visualAcuityOU        String?  // Both eyes
+  refractionOD          String?
+  refractionOS          String?
+  intraocularPressureOD Float?
+  intraocularPressureOS Float?
+  pupilReaction         String?
+  anteriorSegment       String?
+  posteriorSegment      String?
+  diagnosis             String?
+  treatment             String?
+  followUpRequired      Boolean  @default(false)
+  followUpDate          DateTime?
+  notes                 String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Relations
+  patient           Patient           @relation(fields: [patientId], references: [id])
+  diagnosticTests   DiagnosticTest[]
+  clinicalNotes     ClinicalNote[]
+
+  @@map("ocular_history")
+}
+
+model FamilyOcularHistory {
+  id          String   @id @default(cuid())
+  patientId   String
+  relation    String   // Mother, Father, Sibling, etc.
+  condition   String
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [id])
+
+  @@map("family_ocular_history")
+}
+
+// Diagnostic Tests
+model DiagnosticTest {
+  id              String            @id @default(cuid())
+  ocularHistoryId String
+  testType        DiagnosticTestType
+  testDate        DateTime
+  results         Json              // Store test results as JSON
+  images          String[]          // Array of image URLs
+  notes           String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  // Relations
+  ocularHistory OcularHistory @relation(fields: [ocularHistoryId], references: [id])
+
+  @@map("diagnostic_tests")
+}
+
+enum DiagnosticTestType {
+  OCT
+  VISUAL_FIELD
+  TOPOGRAPHY
+  FUNDUS_PHOTO
+  AUTOREFRACTOR
+  KERATOMETER
+  BIOMETRY
+  PACHYMETRY
+  GONIOSCOPY
+  OTHER
+}
+
+// Prescriptions
+model Prescription {
+  id          String           @id @default(cuid())
+  patientId   String
+  doctorId    String
+  type        PrescriptionType
+  date        DateTime
+  expiryDate  DateTime?
+  isActive    Boolean          @default(true)
+  notes       String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  // Relations
+  patient     Patient          @relation(fields: [patientId], references: [id])
+  doctor      User             @relation(fields: [doctorId], references: [id])
+  spectacleRx SpectaclePrescription?
+  contactRx   ContactLensPrescription?
+
+  @@map("prescriptions")
+}
+
+enum PrescriptionType {
+  SPECTACLE
+  CONTACT_LENS
+  THERAPEUTIC
+}
+
+model SpectaclePrescription {
+  id             String  @id @default(cuid())
+  prescriptionId String  @unique
+  sphereOD       Float?  // Right eye sphere
+  sphereOS       Float?  // Left eye sphere
+  cylinderOD     Float?  // Right eye cylinder
+  cylinderOS     Float?  // Left eye cylinder
+  axisOD         Int?    // Right eye axis
+  axisOS         Int?    // Left eye axis
+  addOD          Float?  // Right eye add power
+  addOS          Float?  // Left eye add power
+  pdOD           Float?  // Right eye pupillary distance
+  pdOS           Float?  // Left eye pupillary distance
+  heightOD       Float?  // Right eye segment height
+  heightOS       Float?  // Left eye segment height
+  notes          String?
+
+  // Relations
+  prescription Prescription @relation(fields: [prescriptionId], references: [id])
+
+  @@map("spectacle_prescriptions")
+}
+
+model ContactLensPrescription {
+  id             String  @id @default(cuid())
+  prescriptionId String  @unique
+  brand          String
+  type           String  // Daily, Weekly, Monthly, etc.
+  baseCurveOD    Float?  // Right eye base curve
+  baseCurveOS    Float?  // Left eye base curve
+  diameterOD     Float?  // Right eye diameter
+  diameterOS     Float?  // Left eye diameter
+  powerOD        Float?  // Right eye power
+  powerOS        Float?  // Left eye power
+  notes          String?
+
+  // Relations
+  prescription Prescription @relation(fields: [prescriptionId], references: [id])
+
+  @@map("contact_lens_prescriptions")
+}
+
+// Contact Lens Fitting
+model ContactLensFit {
+  id          String   @id @default(cuid())
+  patientId   String
+  fitDate     DateTime
+  brand       String
+  type        String
+  baseCurve   Float
+  diameter    Float
+  power       Float
+  eye         EyeSide
+  fitQuality  String
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [id])
+
+  @@map("contact_lens_fits")
+}
+
+enum EyeSide {
+  OD
+  OS
+  OU
+}
+
+// Appointments
+model Appointment {
+  id          String            @id @default(cuid())
+  patientId   String
+  doctorId    String
+  locationId  String
+  clinicId    String
+  startTime   DateTime
+  endTime     DateTime
+  type        AppointmentType
+  status      AppointmentStatus @default(SCHEDULED)
+  notes       String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  // Relations
+  patient  Patient  @relation(fields: [patientId], references: [id])
+  doctor   User     @relation(fields: [doctorId], references: [id])
+  location Location @relation(fields: [locationId], references: [id])
+  clinic   Clinic   @relation(fields: [clinicId], references: [id])
+
+  @@map("appointments")
+}
+
+enum AppointmentType {
+  COMPREHENSIVE_EXAM
+  CONTACT_LENS_FITTING
+  FOLLOW_UP
+  EMERGENCY
+  SURGICAL_CONSULT
+  DIAGNOSTIC_TESTING
+  VISION_THERAPY
+  LOW_VISION
+  OTHER
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+  RESCHEDULED
+}
+
+// Clinical Notes
+model ClinicalNote {
+  id              String   @id @default(cuid())
+  patientId       String
+  doctorId        String
+  ocularHistoryId String?
+  appointmentId   String?
+  noteType        NoteType
+  content         String
+  isPrivate       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  patient     Patient       @relation(fields: [patientId], references: [id])
+  doctor      User          @relation(fields: [doctorId], references: [id])
+  ocularHistory OcularHistory? @relation(fields: [ocularHistoryId], references: [id])
+
+  @@map("clinical_notes")
+}
+
+enum NoteType {
+  EXAM_NOTES
+  TREATMENT_PLAN
+  FOLLOW_UP
+  REFERRAL
+  PRESCRIPTION
+  OTHER
+}
+
+// Equipment Management
+model Equipment {
+  id          String        @id @default(cuid())
+  clinicId    String
+  locationId  String?
+  name        String
+  type        EquipmentType
+  model       String?
+  serialNumber String?
+  status      EquipmentStatus @default(ACTIVE)
+  lastMaintenance DateTime?
+  nextMaintenance DateTime?
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  clinic   Clinic   @relation(fields: [clinicId], references: [id])
+  location Location? @relation(fields: [locationId], references: [id])
+
+  @@map("equipment")
+}
+
+enum EquipmentType {
+  OCT
+  VISUAL_FIELD
+  AUTOREFRACTOR
+  KERATOMETER
+  TOPOGRAPHER
+  FUNDUS_CAMERA
+  BIOMETER
+  PACHYMETER
+  GONIOSCOPE
+  SLIT_LAMP
+  OTHER
+}
+
+enum EquipmentStatus {
+  ACTIVE
+  MAINTENANCE
+  REPAIR
+  INACTIVE
+}
+
+// Optical Inventory
+model Frame {
+  id          String   @id @default(cuid())
+  clinicId    String
+  brand       String
+  model       String
+  color       String
+  size        String
+  material    String
+  price       Float
+  cost        Float
+  sku         String   @unique
+  stock       Int      @default(0)
+  minStock    Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  clinic Clinic @relation(fields: [clinicId], references: [id])
+
+  @@map("frames")
+}
+
+model Lens {
+  id          String   @id @default(cuid())
+  clinicId    String
+  type        String   // Single Vision, Progressive, Bifocal, etc.
+  material    String   // CR-39, Polycarbonate, High Index, etc.
+  coating     String?  // AR, Blue Light, etc.
+  price       Float
+  cost        Float
+  sku         String   @unique
+  stock       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  clinic Clinic @relation(fields: [clinicId], references: [id])
+
+  @@map("lenses")
+}
+
+model ContactLens {
+  id          String   @id @default(cuid())
+  clinicId    String
+  brand       String
+  type        String   // Daily, Weekly, Monthly, etc.
+  power       Float?
+  baseCurve   Float?
+  diameter    Float?
+  price       Float
+  cost        Float
+  sku         String   @unique
+  stock       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  clinic Clinic @relation(fields: [clinicId], references: [id])
+
+  @@map("contact_lenses")
+}
+
+// Insurance
+model InsurancePlan {
+  id          String   @id @default(cuid())
+  clinicId    String
+  name        String
+  type        InsuranceType
+  visionBenefit Float?
+  medicalBenefit Float?
+  copay       Float?
+  deductible  Float?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  clinic   Clinic    @relation(fields: [clinicId], references: [id])
+  patients Patient[]
+
+  @@map("insurance_plans")
+}
+
+enum InsuranceType {
+  VISION
+  MEDICAL
+  BOTH
+}
+
+// AI Analytics and Predictions
+model AIAnalysis {
+  id          String   @id @default(cuid())
+  patientId   String?
+  clinicId    String
+  analysisType AnalysisType
+  data        Json     // Store analysis results as JSON
+  confidence  Float?   // AI confidence score
+  recommendations String?
+  createdAt   DateTime @default(now())
+
+  @@map("ai_analyses")
+}
+
+enum AnalysisType {
+  NO_SHOW_PREDICTION
+  DISEASE_PROGRESSION
+  REVENUE_OPTIMIZATION
+  OPTICAL_CAPTURE_RATE
+  CONTACT_LENS_DROPOUT
+  EQUIPMENT_UTILIZATION
+  PATIENT_SATISFACTION
+  OTHER
+}
