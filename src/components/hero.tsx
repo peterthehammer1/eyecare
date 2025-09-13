@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Eye, Brain, Mic, BarChart3, Users, Shield } from "lucide-react";
@@ -28,10 +29,12 @@ export function Hero() {
           </p>
           
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              Start Free Trial
-              <Eye className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/dashboard">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                Launch Dashboard
+                <Eye className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             <Button size="lg" variant="outline">
               Watch Demo
               <Mic className="ml-2 h-5 w-5" />
