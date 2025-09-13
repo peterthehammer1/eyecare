@@ -24,7 +24,7 @@ NEXTAUTH_SECRET=your-secret-key
 NEXTAUTH_URL=https://your-domain.vercel.app
 OPENAI_API_KEY=your-openai-key
 CLAUDE_API_KEY=your-claude-key
-NUCLEUS_API_KEY=your-retell-key
+NUCLEUS_API_KEY=your-nucleus-key
 ```
 
 ### Option 2: Railway
@@ -132,7 +132,7 @@ npx prisma db seed
    - Create account and get API key
 
 2. **Create Voice Agent**
-   - Create new agent in Retell dashboard
+   - Create new agent in Nucleus dashboard
    - Configure for eyecare use case
    - Set webhook URL: `https://your-domain.com/api/nucleus/webhook`
 
@@ -244,7 +244,7 @@ psql eyecare_platform < backup_20240101.sql
    - Review error logs
 
 4. **Voice AI Issues**
-   - Check Retell API key
+   - Check Nucleus API key
    - Verify webhook configuration
    - Check agent training status
    - Review conversation logs

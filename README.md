@@ -96,7 +96,7 @@ NEXTAUTH_SECRET="your-secret-key"
 NEXTAUTH_URL="http://localhost:3000"
 OPENAI_API_KEY="your-openai-key"
 CLAUDE_API_KEY="your-claude-key"
-NUCLEUS_API_KEY="your-retell-key"
+NUCLEUS_API_KEY="your-nucleus-key"
 ```
 
 ### Nucleus AI Integration
