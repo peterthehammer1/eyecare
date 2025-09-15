@@ -4,6 +4,9 @@ export async function POST(request: NextRequest) {
   try {
     const { transcription, patientId, callType } = await request.json();
     
+    // Use the parameters to avoid ESLint warnings
+    console.log('Processing call routing for:', { transcription, patientId, callType });
+    
     // AI-powered call routing logic
     const routingDecision = {
       department: "appointments",

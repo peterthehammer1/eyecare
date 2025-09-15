@@ -8,7 +8,6 @@ import {
   AlertTriangle, 
   TrendingUp, 
   Users, 
-  Eye, 
   DollarSign,
   ArrowRight,
   Lightbulb

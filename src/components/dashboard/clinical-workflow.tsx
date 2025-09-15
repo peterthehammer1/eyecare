@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
   Stethoscope, 
@@ -13,8 +12,7 @@ import {
   Calendar,
   Eye,
   Brain,
-  Activity,
-  ArrowRight
+  Activity
 } from "lucide-react";
 
 const workflowSteps = [
@@ -150,7 +148,7 @@ export function ClinicalWorkflow() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {workflowSteps.map((step, index) => (
+            {workflowSteps.map((step) => (
               <div 
                 key={step.id}
                 className={`p-4 rounded-lg border-l-4 ${getStatusColor(step.status)}`}

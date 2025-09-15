@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Activity, AlertTriangle, CheckCircle, Clock } from "lucide-react";
+import { Activity, AlertTriangle, CheckCircle } from "lucide-react";
 
 const equipment = [
   {

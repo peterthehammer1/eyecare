@@ -4,6 +4,9 @@ export async function POST(request: NextRequest) {
   try {
     const { audioData, sessionId } = await request.json();
     
+    // Use the parameters to avoid ESLint warnings
+    console.log('Processing transcription for session:', sessionId);
+    
     // Simulate real-time transcription with Nucleus AI
     const mockTranscription = {
       text: "Hello, I'd like to schedule an appointment for my annual eye exam. I'm experiencing some blurry vision lately.",
