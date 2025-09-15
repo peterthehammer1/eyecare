@@ -6,6 +6,9 @@ import { AIInsights } from "@/components/dashboard/ai-insights";
 import { AppointmentSchedule } from "@/components/dashboard/appointment-schedule";
 import { EquipmentStatus } from "@/components/dashboard/equipment-status";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
+import { VoiceAIDashboard } from "@/components/dashboard/voice-ai-dashboard";
+import { OpticalRetailIntelligence } from "@/components/dashboard/optical-retail-intelligence";
+import { ClinicalWorkflow } from "@/components/dashboard/clinical-workflow";
 
 export default function DashboardPage() {
   return (
@@ -31,6 +34,13 @@ export default function DashboardPage() {
             <PatientFlow />
             <EquipmentStatus />
           </div>
+        </div>
+
+        {/* Advanced AI Features */}
+        <div className="mt-8 space-y-6">
+          <VoiceAIDashboard />
+          <OpticalRetailIntelligence />
+          <ClinicalWorkflow />
         </div>
       </div>
     </div>
