@@ -31,6 +31,7 @@ export default function DashboardPage() {
             <RevenueChart />
             <AppointmentSchedule />
             <RecentActivity />
+            <VoiceAIDashboard />
           </div>
           
           {/* Right Column */}
@@ -44,7 +45,6 @@ export default function DashboardPage() {
         {/* Advanced AI Features */}
         <div className="mt-8 space-y-6">
           <AdvancedAnalytics />
-          <VoiceAIDashboard />
           <OpticalRetailIntelligence />
           <OpticalSalesOptimization />
           <ClinicalWorkflow />
