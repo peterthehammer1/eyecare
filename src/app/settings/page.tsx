@@ -7,21 +7,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Settings,
-  User,
   Building,
   Shield,
   Bell,
   Palette,
-  Database,
   Key,
-  Globe,
   Mail,
   Phone,
-  MapPin,
   Save,
   Eye,
-  EyeOff
+  EyeOff,
+  Calendar,
+  AlertTriangle,
+  Package
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -101,7 +99,7 @@ export default function SettingsPage() {
                   Clinic Information
                 </CardTitle>
                 <CardDescription>
-                  Manage your clinic's basic information and contact details
+                  Manage your clinic&apos;s basic information and contact details
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -285,7 +283,7 @@ export default function SettingsPage() {
                       <AlertTriangle className="h-5 w-5 text-red-600" />
                       <div>
                         <h3 className="font-medium">No-Show Alerts</h3>
-                        <p className="text-sm text-gray-600">Get notified when patients don't show up</p>
+                        <p className="text-sm text-gray-600">Get notified when patients don&apos;t show up</p>
                       </div>
                     </div>
                     <Button

@@ -7,16 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { 
   BarChart3,
   TrendingUp,
-  TrendingDown,
   Users,
   DollarSign,
   Eye,
   Calendar,
   Target,
   Brain,
-  AlertTriangle,
-  CheckCircle,
-  Clock
+  AlertTriangle
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
 
@@ -314,7 +311,7 @@ export default function AnalyticsPage() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={false}
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"

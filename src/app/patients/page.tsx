@@ -8,13 +8,11 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Search, 
   Plus, 
-  Filter, 
   MoreHorizontal, 
   Eye, 
   Calendar,
   Phone,
   Mail,
-  MapPin,
   User,
   Clock
 } from "lucide-react";

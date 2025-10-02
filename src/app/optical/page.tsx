@@ -9,14 +9,11 @@ import {
   Search, 
   Plus, 
   Eye,
-  ShoppingCart,
   TrendingUp,
   Package,
   DollarSign,
-  Filter,
   MoreHorizontal,
   Star,
-  Users,
   Target
 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 interface Appointment {
   id: string;
   patientId: string;
+  patientName: string;
   time: string;
   dayOfWeek: string;
   timeOfDay: string;
@@ -10,10 +11,15 @@ interface Appointment {
   distance: number;
 }
 
-interface PatientHistory {
-  [key: string]: {
-    noShowRate: number;
-  };
+interface Prediction {
+  appointmentId: string;
+  patientName: string;
+  appointmentTime: string;
+  noShowProbability: number;
+  confidence: number;
+  riskLevel: string;
+  riskFactors: Record<string, string | number>;
+  recommendations: string[];
 }
 
 export async function POST(request: NextRequest) {
@@ -21,7 +27,7 @@ export async function POST(request: NextRequest) {
     const { appointments, patientHistory } = await request.json();
     
     // AI-powered no-show prediction with 90% confidence
-    const predictions = appointments.map((appointment: Appointment) => {
+    const predictions: Prediction[] = appointments.map((appointment: Appointment) => {
       const riskFactors = {
         weather: Math.random() > 0.7 ? "high" : "low",
         dayOfWeek: appointment.dayOfWeek === "Monday" ? "high" : "low",

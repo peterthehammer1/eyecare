@@ -206,7 +206,7 @@ export default function AppointmentsPage() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Today's Appointments</p>
+                  <p className="text-sm text-gray-600">Today&apos;s Appointments</p>
                   <p className="text-2xl font-bold text-gray-900">{mockAppointments.length}</p>
                 </div>
                 <Calendar className="h-8 w-8 text-blue-600" />
@@ -257,7 +257,7 @@ export default function AppointmentsPage() {
         {/* Appointments List */}
         <Card>
           <CardHeader>
-            <CardTitle>Today's Schedule</CardTitle>
+            <CardTitle>Today&apos;s Schedule</CardTitle>
             <CardDescription>
               {filteredAppointments.length} appointments for {new Date(selectedDate).toLocaleDateString()}
             </CardDescription>
