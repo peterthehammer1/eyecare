@@ -9,88 +9,14 @@ import {
   MicOff, 
   Phone, 
   PhoneOff, 
-  Users,
-  Clock,
-  CheckCircle,
   Brain,
   Activity
 } from "lucide-react";
-
-interface CallSession {
-  id: string;
-  patientName: string;
-  status: 'active' | 'waiting' | 'completed';
-  duration: string;
-  transcription: string;
-  aiInsights: {
-    intent: string;
-    urgency: string;
-    confidence: number;
-  };
-  routing: {
-    department: string;
-    priority: string;
-    suggestedAgent: string;
-  };
-}
 
 export function VoiceAIDashboard() {
   const [isListening, setIsListening] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [currentTranscription, setCurrentTranscription] = useState("");
-  const [callSessions] = useState<CallSession[]>([
-    {
-      id: "call_001",
-      patientName: "Sarah Johnson",
-      status: "active",
-      duration: "3:45",
-      transcription: "I'd like to schedule an appointment for my annual eye exam. I'm experiencing some blurry vision lately.",
-      aiInsights: {
-        intent: "appointment_booking",
-        urgency: "medium",
-        confidence: 0.95
-      },
-      routing: {
-        department: "appointments",
-        priority: "normal",
-        suggestedAgent: "Dr. Smith"
-      }
-    },
-    {
-      id: "call_002",
-      patientName: "Michael Rodriguez",
-      status: "waiting",
-      duration: "1:23",
-      transcription: "I need to refill my contact lens prescription and I'm having some discomfort.",
-      aiInsights: {
-        intent: "prescription_refill",
-        urgency: "high",
-        confidence: 0.88
-      },
-      routing: {
-        department: "clinical",
-        priority: "urgent",
-        suggestedAgent: "Dr. Johnson"
-      }
-    },
-    {
-      id: "call_003",
-      patientName: "Emma Davis",
-      status: "completed",
-      duration: "8:12",
-      transcription: "Thank you for the excellent service. My new glasses are perfect!",
-      aiInsights: {
-        intent: "satisfaction_feedback",
-        urgency: "low",
-        confidence: 0.92
-      },
-      routing: {
-        department: "feedback",
-        priority: "low",
-        suggestedAgent: "Completed"
-      }
-    }
-  ]);
 
   const [aiMetrics] = useState({
     totalCalls: 47,
@@ -114,24 +40,6 @@ export function VoiceAIDashboard() {
     setIsCallActive(false);
     setIsListening(false);
     setCurrentTranscription("");
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-green-100 text-green-800 border-green-200';
-      case 'waiting': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'completed': return 'bg-gray-100 text-gray-800 border-gray-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
-    }
-  };
-
-  const getUrgencyColor = (urgency: string) => {
-    switch (urgency) {
-      case 'high': return 'bg-red-100 text-red-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
   };
 
   return (

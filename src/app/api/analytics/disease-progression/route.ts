@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { patientId, condition, historicalData } = await request.json();
+    const { patientId, condition } = await request.json();
     
     // Use the parameters to avoid ESLint warnings
-    console.log('Processing disease progression for:', { patientId, condition, historicalData });
+    console.log('Processing disease progression for:', { patientId, condition });
     
     // AI-powered disease progression modeling
     const progressionModels = {

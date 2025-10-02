@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { timeframe, practiceId } = await request.json();
+    const { practiceId } = await request.json();
     
     // Use the parameters to avoid ESLint warnings
-    console.log('Processing revenue forecast for:', { timeframe, practiceId });
+    console.log('Processing revenue forecast for practice:', practiceId);
     
     // AI-powered revenue forecasting with 95% accuracy
     const forecastData = {

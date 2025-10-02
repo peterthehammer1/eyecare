@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     
     // AI-powered no-show prediction with 90% confidence
     const predictions: Prediction[] = appointments.map((appointment: Appointment) => {
-      const riskFactors = {
+      const riskFactors: Record<string, string | number> = {
         weather: Math.random() > 0.7 ? "high" : "low",
         dayOfWeek: appointment.dayOfWeek === "Monday" ? "high" : "low",
         timeOfDay: appointment.timeOfDay === "early_morning" ? "high" : "low",
@@ -37,10 +37,11 @@ export async function POST(request: NextRequest) {
         distance: appointment.distance > 20 ? "high" : "low"
       };
       
-      const riskScore = Object.values(riskFactors).reduce((acc, factor) => {
+      const riskScore = Object.values(riskFactors).reduce((acc: number, factor: string | number) => {
         if (factor === "high") return acc + 0.3;
         if (factor === "low") return acc + 0.1;
-        return acc + factor;
+        if (typeof factor === "number") return acc + factor;
+        return acc;
       }, 0);
       
       const noShowProbability = Math.min(riskScore, 0.95);
