@@ -21,6 +21,9 @@ const revenueData = [
 const maxRevenue = Math.max(...revenueData.map(d => d.revenue));
 
 export function RevenueChart() {
+  // Debug logging
+  console.log('Revenue Data:', revenueData);
+  console.log('Max Revenue:', maxRevenue);
   return (
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <CardHeader>
@@ -41,17 +44,25 @@ export function RevenueChart() {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="h-48 flex items-end justify-between gap-2">
-          {revenueData.map((data, index) => (
-            <div key={index} className="flex flex-col items-center flex-1">
-              <div 
-                className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-t mb-2 transition-all duration-300 hover:from-blue-600 hover:to-blue-500 cursor-pointer"
-                style={{ height: `${(data.revenue / maxRevenue) * 100}%` }}
-                title={`${data.time}: $${data.revenue.toLocaleString()}`}
-              />
-              <span className="text-xs text-gray-600">{data.time}</span>
-            </div>
-          ))}
+        <div className="h-64 flex items-end justify-between gap-1 px-2">
+          {revenueData.map((data, index) => {
+            const barHeight = Math.max((data.revenue / maxRevenue) * 100, 5); // Minimum 5% height
+            return (
+              <div key={index} className="flex flex-col items-center flex-1 group">
+                <div 
+                  className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-t transition-all duration-300 hover:from-blue-600 hover:to-blue-500 cursor-pointer min-h-[4px]"
+                  style={{ height: `${barHeight}%` }}
+                  title={`${data.time}: $${data.revenue.toLocaleString()}`}
+                />
+                <span className="text-xs text-gray-600 mt-2 group-hover:text-gray-900 transition-colors">
+                  {data.time}
+                </span>
+                <span className="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                  ${data.revenue.toLocaleString()}
+                </span>
+              </div>
+            );
+          })}
         </div>
         <div className="flex items-center justify-between mt-4 text-sm">
           <span className="text-blue-600 font-medium">
@@ -60,6 +71,13 @@ export function RevenueChart() {
           <span className="text-green-600 font-medium">
             Peak: ${maxRevenue.toLocaleString()} at 5:00 PM
           </span>
+        </div>
+        
+        {/* Debug info - remove in production */}
+        <div className="mt-4 p-2 bg-gray-50 rounded text-xs text-gray-600">
+          <div>Data points: {revenueData.length}</div>
+          <div>Max revenue: ${maxRevenue}</div>
+          <div>Chart height: 256px</div>
         </div>
       </CardContent>
     </Card>
