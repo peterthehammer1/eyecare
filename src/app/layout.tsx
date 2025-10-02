@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "AI EyeCare Platform - Revolutionary Eyecare Management",
   description: "The ultimate AI-powered ophthalmology and optometry practice management platform with voice AI, predictive analytics, and optical retail optimization.",
-  keywords: "eyecare, ophthalmology, optometry, practice management, AI, voice AI, Nucleus AI, optical retail, vision care",
+  keywords: "eyecare, ophthalmology, optometry, practice management, AI, voice AI, SightSync, optical retail, vision care",
 };
 
 export default function RootLayout({

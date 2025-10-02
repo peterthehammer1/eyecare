@@ -465,7 +465,7 @@ export default function SettingsPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="nucleus-key">Nucleus AI API Key</Label>
+                    <Label htmlFor="nucleus-key">SightSync API Key</Label>
                     <div className="flex space-x-2">
                       <Input
                         id="nucleus-key"
@@ -519,7 +519,7 @@ export default function SettingsPage() {
                       <Badge className="bg-green-600">Connected</Badge>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Nucleus AI</span>
+                      <span className="text-sm">SightSync</span>
                       <Badge className="bg-green-600">Connected</Badge>
                     </div>
                     <div className="flex items-center justify-between">

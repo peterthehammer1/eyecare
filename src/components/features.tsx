@@ -26,7 +26,7 @@ const features = [
   },
   {
     icon: Phone,
-    title: "Nucleus AI Voice Agents",
+    title: "SightSync Voice Agents",
     description: "Natural conversation handling for appointments, prescriptions, and patient inquiries with eyecare-specific training.",
     category: "Patient Experience"
   },

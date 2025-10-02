@@ -50,14 +50,14 @@ export function VoiceAI() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
-            🎤 Powered by Nucleus AI
+            🎤 Powered by SightSync
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Voice AI That Understands Eyecare
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Transform patient interactions with AI voice agents trained specifically on eyecare terminology, 
-            procedures, and common patient needs. Built on Nucleus AI&apos;s advanced voice technology.
+            procedures, and common patient needs. Built on SightSync&apos;s advanced voice technology.
           </p>
         </div>
         

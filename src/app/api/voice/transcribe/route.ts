@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     // Use the parameters to avoid ESLint warnings
     console.log('Processing transcription for session:', sessionId);
     
-    // Simulate real-time transcription with Nucleus AI
+    // Simulate real-time transcription with SightSync
     const mockTranscription = {
       text: "Hello, I'd like to schedule an appointment for my annual eye exam. I'm experiencing some blurry vision lately.",
       confidence: 0.95,
