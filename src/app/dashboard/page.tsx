@@ -1,4 +1,3 @@
-import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { KPICards } from "@/components/dashboard/kpi-cards";
 import { RevenueChart } from "@/components/dashboard/revenue-chart";
 import { PatientFlow } from "@/components/dashboard/patient-flow";
@@ -15,9 +14,13 @@ import { OpticalSalesOptimization } from "@/components/dashboard/optical-sales-o
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader />
-      
       <div className="container mx-auto px-4 py-6">
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600 mt-1">AI-Powered Eyecare Management Overview</p>
+        </div>
+
         {/* KPI Cards */}
         <KPICards />
         
