@@ -7,14 +7,10 @@ import {
   ShoppingCart, 
   TrendingUp, 
   Target,
-  Eye,
   Star,
   Users,
   DollarSign,
-  Lightbulb,
-  ArrowRight,
-  CheckCircle,
-  AlertTriangle
+  Lightbulb
 } from "lucide-react";
 
 const opticalInsights = [

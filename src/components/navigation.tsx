@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { 
   LayoutDashboard, 
@@ -15,16 +16,17 @@ import {
 import { useState } from "react";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, current: true },
-  { name: "Patients", href: "/patients", icon: Users, current: false },
-  { name: "Appointments", href: "/appointments", icon: Calendar, current: false },
-  { name: "Optical", href: "/optical", icon: Eye, current: false },
-  { name: "Analytics", href: "/analytics", icon: BarChart3, current: false },
-  { name: "Settings", href: "/settings", icon: Settings, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Patients", href: "/patients", icon: Users },
+  { name: "Appointments", href: "/appointments", icon: Calendar },
+  { name: "Optical", href: "/optical", icon: Eye },
+  { name: "Analytics", href: "/analytics", icon: BarChart3 },
+  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="bg-white border-b border-gray-200">
@@ -40,21 +42,24 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navigation.map((item) => (
-              <Link key={item.name} href={item.href}>
-                <Button
-                  variant={item.current ? "default" : "ghost"}
-                  className={`flex items-center space-x-2 ${
-                    item.current 
-                      ? "bg-blue-600 text-white hover:bg-blue-700" 
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.name}</span>
-                </Button>
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link key={item.name} href={item.href}>
+                  <Button
+                    variant={isActive ? "default" : "ghost"}
+                    className={`flex items-center space-x-2 ${
+                      isActive 
+                        ? "bg-blue-600 text-white hover:bg-blue-700" 
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.name}</span>
+                  </Button>
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -77,22 +82,25 @@ export function Navigation() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="space-y-1">
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <Button
-                    variant={item.current ? "default" : "ghost"}
-                    className={`w-full justify-start ${
-                      item.current 
-                        ? "bg-blue-600 text-white hover:bg-blue-700" 
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <item.icon className="h-4 w-4 mr-2" />
-                    <span>{item.name}</span>
-                  </Button>
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link key={item.name} href={item.href}>
+                    <Button
+                      variant={isActive ? "default" : "ghost"}
+                      className={`w-full justify-start ${
+                        isActive 
+                          ? "bg-blue-600 text-white hover:bg-blue-700" 
+                          : "text-gray-600 hover:text-gray-900"
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <item.icon className="h-4 w-4 mr-2" />
+                      <span>{item.name}</span>
+                    </Button>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

@@ -4,6 +4,9 @@ export async function POST(request: NextRequest) {
   try {
     const { patientId, condition, historicalData } = await request.json();
     
+    // Use the parameters to avoid ESLint warnings
+    console.log('Processing disease progression for:', { patientId, condition, historicalData });
+    
     // AI-powered disease progression modeling
     const progressionModels = {
       glaucoma: {

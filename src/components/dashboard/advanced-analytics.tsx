@@ -2,24 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
   TrendingUp, 
-  TrendingDown, 
   Brain, 
   Target,
   AlertTriangle,
-  CheckCircle,
-  BarChart3,
-  PieChart,
   Activity,
-  DollarSign,
   Users,
   Calendar,
   Eye,
-  Lightbulb,
-  ArrowRight
+  Lightbulb
 } from "lucide-react";
 
 interface RevenueForecast {
@@ -63,14 +56,25 @@ interface NoShowPrediction {
   noShowProbability: number;
   confidence: number;
   riskLevel: string;
-  riskFactors: any;
+  riskFactors: Record<string, string | number>;
   recommendations: string[];
+}
+
+interface DiseaseProgression {
+  [key: string]: {
+    currentStage: string;
+    progressionRate: number;
+    predictions: {
+      next6Months: { stage: string; confidence: number };
+      nextYear: { stage: string; confidence: number };
+    };
+  };
 }
 
 export function AdvancedAnalytics() {
   const [revenueForecast, setRevenueForecast] = useState<RevenueForecast | null>(null);
   const [noShowPredictions, setNoShowPredictions] = useState<NoShowPrediction[]>([]);
-  const [diseaseProgression, setDiseaseProgression] = useState<any>(null);
+  const [diseaseProgression, setDiseaseProgression] = useState<DiseaseProgression | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -392,7 +396,7 @@ export function AdvancedAnalytics() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {Object.entries(diseaseProgression).map(([condition, data]: [string, any]) => (
+              {Object.entries(diseaseProgression).map(([condition, data]) => (
                 <div key={condition} className="p-4 bg-gray-50 rounded-lg">
                   <h4 className="font-medium text-gray-900 capitalize mb-3">
                     {condition.replace('_', ' ')} Progression

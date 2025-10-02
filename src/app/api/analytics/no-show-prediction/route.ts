@@ -1,11 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+interface Appointment {
+  id: string;
+  patientId: string;
+  time: string;
+  dayOfWeek: string;
+  timeOfDay: string;
+  type: string;
+  distance: number;
+}
+
+interface PatientHistory {
+  [key: string]: {
+    noShowRate: number;
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { appointments, patientHistory } = await request.json();
     
     // AI-powered no-show prediction with 90% confidence
-    const predictions = appointments.map((appointment: any) => {
+    const predictions = appointments.map((appointment: Appointment) => {
       const riskFactors = {
         weather: Math.random() > 0.7 ? "high" : "low",
         dayOfWeek: appointment.dayOfWeek === "Monday" ? "high" : "low",
