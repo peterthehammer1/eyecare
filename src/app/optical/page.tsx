@@ -14,7 +14,20 @@ import {
   DollarSign,
   MoreHorizontal,
   Star,
-  Target
+  Target,
+  Brain,
+  Zap,
+  Shield,
+  Activity,
+  AlertTriangle,
+  CheckCircle,
+  Users,
+  BarChart3,
+  Filter,
+  Settings,
+  Heart,
+  ShoppingCart,
+  TrendingDown
 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
@@ -35,7 +48,24 @@ const mockFrames = [
     isActive: true,
     category: "Sunglasses",
     style: "Aviator",
-    popularity: 4.8
+    popularity: 4.8,
+    aiInsights: {
+      recommendationScore: 94,
+      salesProbability: 87,
+      optimalPrice: 195.00,
+      customerMatch: "High",
+      trendDirection: "Up",
+      seasonality: "Summer Peak",
+      competitorAnalysis: "Premium Position",
+      inventoryOptimization: "Optimal"
+    },
+    salesData: {
+      monthlySales: 24,
+      conversionRate: 0.78,
+      avgCustomerRating: 4.8,
+      returnRate: 0.05,
+      profitMargin: 0.50
+    }
   },
   {
     id: "2",
@@ -52,7 +82,24 @@ const mockFrames = [
     isActive: true,
     category: "Sunglasses",
     style: "Square",
-    popularity: 4.6
+    popularity: 4.6,
+    aiInsights: {
+      recommendationScore: 89,
+      salesProbability: 82,
+      optimalPrice: 165.00,
+      customerMatch: "High",
+      trendDirection: "Stable",
+      seasonality: "Year-Round",
+      competitorAnalysis: "Competitive",
+      inventoryOptimization: "Good"
+    },
+    salesData: {
+      monthlySales: 18,
+      conversionRate: 0.72,
+      avgCustomerRating: 4.6,
+      returnRate: 0.08,
+      profitMargin: 0.50
+    }
   },
   {
     id: "3",
@@ -69,7 +116,24 @@ const mockFrames = [
     isActive: true,
     category: "Eyeglasses",
     style: "Round",
-    popularity: 4.7
+    popularity: 4.7,
+    aiInsights: {
+      recommendationScore: 96,
+      salesProbability: 91,
+      optimalPrice: 95.00,
+      customerMatch: "Very High",
+      trendDirection: "Up",
+      seasonality: "Fall Peak",
+      competitorAnalysis: "Value Leader",
+      inventoryOptimization: "Excellent"
+    },
+    salesData: {
+      monthlySales: 32,
+      conversionRate: 0.85,
+      avgCustomerRating: 4.7,
+      returnRate: 0.03,
+      profitMargin: 0.50
+    }
   },
   {
     id: "4",
@@ -169,10 +233,14 @@ export default function OpticalPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Optical Retail Management</h1>
-            <p className="text-gray-600 mt-1">Manage frames, lenses, and optical inventory</p>
+            <h1 className="text-3xl font-bold text-gray-900">AI-Powered Optical Retail</h1>
+            <p className="text-gray-600 mt-1">Smart frame recommendations and sales optimization</p>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Brain className="h-4 w-4" />
+              AI Insights
+            </Button>
             <Button variant="outline">
               <Package className="h-4 w-4 mr-2" />
               Inventory Report
@@ -183,6 +251,100 @@ export default function OpticalPage() {
             </Button>
           </div>
         </div>
+
+        {/* AI Analytics Dashboard */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">AI Recommendations</p>
+                  <p className="text-2xl font-bold text-purple-600">94%</p>
+                </div>
+                <Brain className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Sales Conversion</p>
+                  <p className="text-2xl font-bold text-green-600">78%</p>
+                </div>
+                <Target className="h-8 w-8 text-green-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Revenue Potential</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    ${mockFrames.reduce((sum, frame) => sum + (frame.salesData.monthlySales * frame.price), 0).toLocaleString()}
+                  </p>
+                </div>
+                <DollarSign className="h-8 w-8 text-blue-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Customer Satisfaction</p>
+                  <p className="text-2xl font-bold text-yellow-600">4.7/5</p>
+                </div>
+                <Star className="h-8 w-8 text-yellow-600" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* AI Sales Optimization Panel */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="h-5 w-5 text-yellow-600" />
+              AI Sales Optimization
+            </CardTitle>
+            <CardDescription>
+              Smart recommendations for maximizing optical sales and customer satisfaction
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="h-4 w-4 text-green-600" />
+                  <span className="font-medium text-green-800">Top Performers</span>
+                </div>
+                <div className="text-sm text-green-700">
+                  Warby Parker Percey: 96% recommendation score, 91% sales probability
+                </div>
+              </div>
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="h-4 w-4 text-blue-600" />
+                  <span className="font-medium text-blue-800">Inventory Alerts</span>
+                </div>
+                <div className="text-sm text-blue-700">
+                  {lowStockItems.length} items need restocking to optimize sales
+                </div>
+              </div>
+              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <Activity className="h-4 w-4 text-purple-600" />
+                  <span className="font-medium text-purple-800">Trend Analysis</span>
+                </div>
+                <div className="text-sm text-purple-700">
+                  Round frames trending up 15%, recommend increasing inventory
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Tabs */}
         <div className="flex space-x-1 mb-6">
@@ -313,71 +475,128 @@ export default function OpticalPage() {
             <CardContent>
               <div className="space-y-4">
                 {filteredFrames.map((frame) => (
-                  <div
-                    key={frame.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <Eye className="h-8 w-8 text-gray-400" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">
-                          {frame.brand} {frame.model}
-                        </h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <span>Color: {frame.color}</span>
-                          <span>Size: {frame.size}</span>
-                          <span>Material: {frame.material}</span>
-                          <span>SKU: {frame.sku}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 mt-1">
-                          <Badge variant={frame.isActive ? "default" : "secondary"}>
-                            {frame.isActive ? "Active" : "Inactive"}
-                          </Badge>
-                          <Badge variant="outline">{frame.category}</Badge>
-                          <Badge variant="outline">{frame.style}</Badge>
-                          <div className="flex items-center space-x-1">
-                            <Star className="h-3 w-3 text-yellow-500 fill-current" />
-                            <span className="text-xs text-gray-600">{frame.popularity}</span>
+                  <Card key={frame.id} className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <Eye className="h-8 w-8 text-gray-400" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <h3 className="font-semibold text-gray-900">
+                                {frame.brand} {frame.model}
+                              </h3>
+                              <Badge variant={frame.isActive ? "default" : "secondary"}>
+                                {frame.isActive ? "Active" : "Inactive"}
+                              </Badge>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                              <div className="space-y-1 text-sm text-gray-600">
+                                <div>Color: {frame.color}</div>
+                                <div>Size: {frame.size}</div>
+                                <div>Material: {frame.material}</div>
+                                <div>SKU: {frame.sku}</div>
+                              </div>
+                              
+                              <div className="space-y-1 text-sm text-gray-600">
+                                <div className="flex items-center gap-2">
+                                  <Badge variant="outline">{frame.category}</Badge>
+                                  <Badge variant="outline">{frame.style}</Badge>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                                  <span>Rating: {frame.popularity}</span>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <DollarSign className="h-3 w-3" />
+                                  <span>Price: ${frame.price}</span>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <Package className="h-3 w-3" />
+                                  <span className={`font-medium ${frame.stock <= frame.minStock ? 'text-red-600' : 'text-green-600'}`}>
+                                    Stock: {frame.stock}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* AI Insights Panel */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+                              <div className="p-2 bg-purple-50 rounded text-center">
+                                <div className="text-xs text-gray-600">AI Score</div>
+                                <div className="text-sm font-medium text-purple-600">
+                                  {frame.aiInsights.recommendationScore}%
+                                </div>
+                              </div>
+                              <div className="p-2 bg-green-50 rounded text-center">
+                                <div className="text-xs text-gray-600">Sales Prob</div>
+                                <div className="text-sm font-medium text-green-600">
+                                  {frame.aiInsights.salesProbability}%
+                                </div>
+                              </div>
+                              <div className="p-2 bg-blue-50 rounded text-center">
+                                <div className="text-xs text-gray-600">Monthly Sales</div>
+                                <div className="text-sm font-medium text-blue-600">
+                                  {frame.salesData.monthlySales}
+                                </div>
+                              </div>
+                              <div className="p-2 bg-yellow-50 rounded text-center">
+                                <div className="text-xs text-gray-600">Conversion</div>
+                                <div className="text-sm font-medium text-yellow-600">
+                                  {(frame.salesData.conversionRate * 100).toFixed(0)}%
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* AI Recommendations */}
+                            <div className="flex items-center space-x-4 text-xs text-gray-500">
+                              <span>Customer Match: {frame.aiInsights.customerMatch}</span>
+                              <span>Trend: {frame.aiInsights.trendDirection}</span>
+                              <span>Season: {frame.aiInsights.seasonality}</span>
+                              <span>Margin: {(frame.salesData.profitMargin * 100).toFixed(0)}%</span>
+                            </div>
                           </div>
                         </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          {frame.stock <= frame.minStock && (
+                            <Badge variant="destructive" className="text-xs">Low Stock</Badge>
+                          )}
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem>
+                                <Eye className="h-4 w-4 mr-2" />
+                                View Details
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Package className="h-4 w-4 mr-2" />
+                                Update Stock
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <DollarSign className="h-4 w-4 mr-2" />
+                                Edit Pricing
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Brain className="h-4 w-4 mr-2" />
+                                AI Analysis
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <TrendingUp className="h-4 w-4 mr-2" />
+                                Sales Report
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <div className="text-right text-sm">
-                        <p className="font-medium text-gray-900">${frame.price}</p>
-                        <p className="text-gray-600">Cost: ${frame.cost}</p>
-                        <p className={`font-medium ${frame.stock <= frame.minStock ? 'text-red-600' : 'text-green-600'}`}>
-                          Stock: {frame.stock}
-                        </p>
-                        {frame.stock <= frame.minStock && (
-                          <Badge variant="destructive" className="text-xs">Low Stock</Badge>
-                        )}
-                      </div>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Eye className="h-4 w-4 mr-2" />
-                            View Details
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Package className="h-4 w-4 mr-2" />
-                            Update Stock
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <DollarSign className="h-4 w-4 mr-2" />
-                            Edit Pricing
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </CardContent>
