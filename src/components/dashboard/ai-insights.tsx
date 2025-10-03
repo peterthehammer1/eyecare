@@ -10,15 +10,32 @@ import {
   Users, 
   DollarSign,
   ArrowRight,
-  Lightbulb
+  Lightbulb,
+  Eye,
+  Shield,
+  Zap,
+  Heart,
+  Target,
+  Activity
 } from "lucide-react";
 
 const insights = [
   {
+    type: "disease",
+    title: "Early Glaucoma Detection",
+    description: "OCT scan analysis detected subtle RNFL thinning in patient Michael Rodriguez. Recommend immediate specialist consultation.",
+    impact: "Critical",
+    priority: "high" as const,
+    icon: Eye,
+    color: "text-red-600",
+    bgColor: "bg-red-50",
+    borderColor: "border-red-200"
+  },
+  {
     type: "revenue",
-    title: "Revenue Optimization Opportunity",
-    description: "AI detected 3 patients with high optical purchase probability. Recommend frame consultation.",
-    impact: "Potential +$1,200",
+    title: "Optical Revenue Opportunity",
+    description: "AI identified 4 patients with high frame purchase probability (89% confidence). Recommend premium frame consultation.",
+    impact: "+$2,400",
     priority: "high" as const,
     icon: DollarSign,
     color: "text-green-600",
@@ -26,37 +43,48 @@ const insights = [
     borderColor: "border-green-200"
   },
   {
-    type: "efficiency",
-    title: "Schedule Optimization",
-    description: "Moving Dr. Johnson&apos;s 2:30 PM appointment to 3:15 PM could reduce wait times by 40%.",
-    impact: "Save 12 min",
+    type: "treatment",
+    title: "Treatment Response Prediction",
+    description: "Patient Sarah Chen shows 94% probability of positive response to new glaucoma medication based on genetic markers.",
+    impact: "High Success",
     priority: "medium" as const,
-    icon: TrendingUp,
+    icon: Shield,
     color: "text-blue-600",
     bgColor: "bg-blue-50",
     borderColor: "border-blue-200"
   },
   {
-    type: "risk",
-    title: "Patient Risk Alert",
-    description: "Sarah Chen shows early signs of glaucoma progression. Recommend immediate follow-up.",
-    impact: "High Priority",
-    priority: "high" as const,
-    icon: AlertTriangle,
-    color: "text-red-600",
-    bgColor: "bg-red-50",
-    borderColor: "border-red-200"
+    type: "efficiency",
+    title: "Schedule Optimization",
+    description: "AI recommends moving 3:00 PM appointment to 2:45 PM to reduce patient wait time by 35%.",
+    impact: "Save 18 min",
+    priority: "medium" as const,
+    icon: TrendingUp,
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-200"
   },
   {
     type: "prediction",
-    title: "No-Show Prediction",
-    description: "AI predicts 15% no-show rate for tomorrow&apos;s appointments. Consider overbooking.",
-    impact: "3 patients",
-    priority: "low" as const,
-    icon: Users,
+    title: "No-Show Risk Alert",
+    description: "AI predicts 22% no-show probability for tomorrow&apos;s appointments. Consider automated reminders.",
+    impact: "5 patients",
+    priority: "medium" as const,
+    icon: Zap,
     color: "text-orange-600",
     bgColor: "bg-orange-50",
     borderColor: "border-orange-200"
+  },
+  {
+    type: "satisfaction",
+    title: "Patient Satisfaction Boost",
+    description: "AI suggests personalized follow-up calls for 3 patients who rated experience below 4 stars.",
+    impact: "Improve NPS",
+    priority: "low" as const,
+    icon: Heart,
+    color: "text-pink-600",
+    bgColor: "bg-pink-50",
+    borderColor: "border-pink-200"
   }
 ];
 

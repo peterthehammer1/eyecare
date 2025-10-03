@@ -10,7 +10,13 @@ import {
   TrendingUp, 
   TrendingDown,
   Activity,
-  Target
+  Target,
+  Brain,
+  Shield,
+  Zap,
+  Heart,
+  AlertTriangle,
+  CheckCircle
 } from "lucide-react";
 
 const kpiData = [
@@ -33,13 +39,13 @@ const kpiData = [
     color: "text-blue-600"
   },
   {
-    title: "Appointments",
-    value: "23",
-    change: "-2.1%",
-    changeType: "negative" as const,
-    icon: Calendar,
-    description: "remaining today",
-    color: "text-orange-600"
+    title: "AI Risk Alerts",
+    value: "3",
+    change: "-1",
+    changeType: "positive" as const,
+    icon: AlertTriangle,
+    description: "high-risk patients",
+    color: "text-red-600"
   },
   {
     title: "Optical Capture",
@@ -51,28 +57,55 @@ const kpiData = [
     color: "text-purple-600"
   },
   {
-    title: "AI Predictions",
+    title: "AI Accuracy",
     value: "94%",
     change: "+2.1%",
     changeType: "positive" as const,
-    icon: Activity,
-    description: "accuracy rate",
+    icon: Brain,
+    description: "diagnostic accuracy",
     color: "text-indigo-600"
   },
   {
-    title: "Revenue Target",
-    value: "87%",
-    change: "+12%",
+    title: "Disease Detection",
+    value: "12",
+    change: "+3",
     changeType: "positive" as const,
-    icon: Target,
-    description: "of monthly goal",
+    icon: Shield,
+    description: "early detections",
     color: "text-emerald-600"
+  },
+  {
+    title: "No-Show Prediction",
+    value: "89%",
+    change: "+4.2%",
+    changeType: "positive" as const,
+    icon: Zap,
+    description: "prediction accuracy",
+    color: "text-yellow-600"
+  },
+  {
+    title: "Patient Satisfaction",
+    value: "4.8/5",
+    change: "+0.2",
+    changeType: "positive" as const,
+    icon: Heart,
+    description: "average rating",
+    color: "text-pink-600"
+  },
+  {
+    title: "Treatment Success",
+    value: "96%",
+    change: "+1.8%",
+    changeType: "positive" as const,
+    icon: CheckCircle,
+    description: "success rate",
+    color: "text-teal-600"
   }
 ];
 
 export function KPICards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
       {kpiData.map((kpi, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
