@@ -19,7 +19,26 @@ import {
   EyeOff,
   Calendar,
   AlertTriangle,
-  Package
+  Package,
+  Brain,
+  Zap,
+  Activity,
+  CheckCircle,
+  Settings,
+  Database,
+  Cloud,
+  Wifi,
+  WifiOff,
+  RefreshCw,
+  ExternalLink,
+  Lock,
+  Unlock,
+  Server,
+  Cpu,
+  HardDrive,
+  Monitor,
+  CreditCard,
+  TestTube
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -27,14 +46,14 @@ export default function SettingsPage() {
   const [showApiKey, setShowApiKey] = useState(false);
   const [settings, setSettings] = useState({
     clinic: {
-      name: "Nucleus EyeCare Center",
+      name: "SightSync EyeCare Center",
       address: "123 Medical Plaza, Suite 200",
       city: "San Francisco",
       state: "CA",
       zipCode: "94102",
       phone: "(555) 123-4567",
-      email: "info@nucleuseyecare.com",
-      website: "https://nucleuseyecare.com",
+      email: "info@sightsync.com",
+      website: "https://sightsync.com",
       timezone: "America/Los_Angeles"
     },
     notifications: {
@@ -43,7 +62,10 @@ export default function SettingsPage() {
       appointmentReminders: true,
       noShowAlerts: true,
       lowStockAlerts: true,
-      revenueReports: true
+      revenueReports: true,
+      aiInsights: true,
+      riskAlerts: true,
+      systemUpdates: true
     },
     appearance: {
       theme: "light",
@@ -51,13 +73,55 @@ export default function SettingsPage() {
       sidebarCollapsed: false,
       compactMode: false
     },
+    ai: {
+      sightSyncApiKey: "sk-sightsync-1234567890abcdef",
+      openaiApiKey: "sk-openai-abcdef1234567890",
+      claudeApiKey: "sk-claude-1234567890abcdef",
+      aiEnabled: true,
+      voiceAIEnabled: true,
+      predictiveAnalytics: true,
+      riskAssessment: true,
+      salesOptimization: true,
+      schedulingOptimization: true,
+      dataRetention: "2 years",
+      privacyMode: "standard"
+    },
     integrations: {
-      openaiApiKey: "sk-...",
-      claudeApiKey: "claude-...",
-      nucleusApiKey: "nucleus-...",
-      databaseUrl: "postgresql://...",
-      smtpHost: "smtp.gmail.com",
-      smtpPort: "587"
+      emrSystem: {
+        name: "Epic MyChart",
+        status: "connected",
+        lastSync: "2024-01-20T10:30:00Z",
+        syncFrequency: "real-time"
+      },
+      paymentProcessor: {
+        name: "Stripe",
+        status: "connected",
+        lastSync: "2024-01-20T10:25:00Z",
+        syncFrequency: "real-time"
+      },
+      labSystem: {
+        name: "LabCorp",
+        status: "connected",
+        lastSync: "2024-01-20T09:45:00Z",
+        syncFrequency: "hourly"
+      },
+      insuranceVerification: {
+        name: "Change Healthcare",
+        status: "connected",
+        lastSync: "2024-01-20T10:15:00Z",
+        syncFrequency: "real-time"
+      }
+    },
+    system: {
+      serverStatus: "online",
+      databaseStatus: "healthy",
+      aiServiceStatus: "operational",
+      lastBackup: "2024-01-20T02:00:00Z",
+      uptime: "99.9%",
+      responseTime: "45ms",
+      storageUsed: "2.3TB",
+      memoryUsage: "68%",
+      cpuUsage: "42%"
     }
   });
 
@@ -72,23 +136,527 @@ export default function SettingsPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-            <p className="text-gray-600 mt-1">Configure your practice management system</p>
+            <h1 className="text-3xl font-bold text-gray-900">AI-Powered Settings Center</h1>
+            <p className="text-gray-600 mt-1">Configure AI services, integrations, and system preferences</p>
           </div>
-          <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700">
-            <Save className="h-4 w-4 mr-2" />
-            Save Changes
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" className="flex items-center gap-2">
+              <RefreshCw className="h-4 w-4" />
+              Refresh Status
+            </Button>
+            <Button onClick={handleSave} className="bg-blue-600 hover:bg-blue-700">
+              <Save className="h-4 w-4 mr-2" />
+              Save Changes
+            </Button>
+          </div>
         </div>
 
-        <Tabs defaultValue="clinic" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+        {/* System Status Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">AI Services</p>
+                  <p className="text-2xl font-bold text-green-600">Operational</p>
+                </div>
+                <Brain className="h-8 w-8 text-green-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">System Uptime</p>
+                  <p className="text-2xl font-bold text-blue-600">99.9%</p>
+                </div>
+                <Activity className="h-8 w-8 text-blue-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Active Integrations</p>
+                  <p className="text-2xl font-bold text-purple-600">4/4</p>
+                </div>
+                <CheckCircle className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Response Time</p>
+                  <p className="text-2xl font-bold text-yellow-600">45ms</p>
+                </div>
+                <Zap className="h-8 w-8 text-yellow-600" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Tabs defaultValue="ai-services" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-6">
+            <TabsTrigger value="ai-services">AI Services</TabsTrigger>
+            <TabsTrigger value="integrations">Integrations</TabsTrigger>
+            <TabsTrigger value="system">System</TabsTrigger>
             <TabsTrigger value="clinic">Clinic Info</TabsTrigger>
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
             <TabsTrigger value="appearance">Appearance</TabsTrigger>
-            <TabsTrigger value="integrations">Integrations</TabsTrigger>
-            <TabsTrigger value="security">Security</TabsTrigger>
           </TabsList>
+
+          {/* AI Services Configuration */}
+          <TabsContent value="ai-services">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Brain className="h-5 w-5 text-purple-600" />
+                  AI Services Configuration
+                </CardTitle>
+                <CardDescription>
+                  Configure AI models, voice services, and predictive analytics
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* API Keys Section */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">API Keys</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="sightSyncKey">SightSync API Key</Label>
+                      <div className="flex items-center space-x-2">
+                        <Input
+                          id="sightSyncKey"
+                          type={showApiKey ? "text" : "password"}
+                          value={settings.ai.sightSyncApiKey}
+                          className="font-mono text-sm"
+                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setShowApiKey(!showApiKey)}
+                        >
+                          {showApiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </Button>
+                      </div>
+                      <Badge variant="secondary" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Active
+                      </Badge>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="openaiKey">OpenAI API Key</Label>
+                      <div className="flex items-center space-x-2">
+                        <Input
+                          id="openaiKey"
+                          type={showApiKey ? "text" : "password"}
+                          value={settings.ai.openaiApiKey}
+                          className="font-mono text-sm"
+                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setShowApiKey(!showApiKey)}
+                        >
+                          {showApiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </Button>
+                      </div>
+                      <Badge variant="secondary" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Active
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Features Section */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">AI Features</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Brain className="h-5 w-5 text-purple-600" />
+                          <div>
+                            <p className="font-medium">AI Analytics</p>
+                            <p className="text-sm text-gray-600">Predictive insights and recommendations</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.aiEnabled ? "default" : "secondary"}>
+                          {settings.ai.aiEnabled ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Zap className="h-5 w-5 text-blue-600" />
+                          <div>
+                            <p className="font-medium">Voice AI</p>
+                            <p className="text-sm text-gray-600">Natural language processing</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.voiceAIEnabled ? "default" : "secondary"}>
+                          {settings.ai.voiceAIEnabled ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Activity className="h-5 w-5 text-green-600" />
+                          <div>
+                            <p className="font-medium">Predictive Analytics</p>
+                            <p className="text-sm text-gray-600">Revenue and patient forecasting</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.predictiveAnalytics ? "default" : "secondary"}>
+                          {settings.ai.predictiveAnalytics ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Shield className="h-5 w-5 text-red-600" />
+                          <div>
+                            <p className="font-medium">Risk Assessment</p>
+                            <p className="text-sm text-gray-600">Patient risk analysis</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.riskAssessment ? "default" : "secondary"}>
+                          {settings.ai.riskAssessment ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Target className="h-5 w-5 text-yellow-600" />
+                          <div>
+                            <p className="font-medium">Sales Optimization</p>
+                            <p className="text-sm text-gray-600">Optical revenue optimization</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.salesOptimization ? "default" : "secondary"}>
+                          {settings.ai.salesOptimization ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Calendar className="h-5 w-5 text-indigo-600" />
+                          <div>
+                            <p className="font-medium">Schedule Optimization</p>
+                            <p className="text-sm text-gray-600">Appointment scheduling AI</p>
+                          </div>
+                        </div>
+                        <Badge variant={settings.ai.schedulingOptimization ? "default" : "secondary"}>
+                          {settings.ai.schedulingOptimization ? "Enabled" : "Disabled"}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Privacy & Data Section */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Privacy & Data</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="dataRetention">Data Retention Period</Label>
+                      <Input
+                        id="dataRetention"
+                        value={settings.ai.dataRetention}
+                        placeholder="2 years"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="privacyMode">Privacy Mode</Label>
+                      <Input
+                        id="privacyMode"
+                        value={settings.ai.privacyMode}
+                        placeholder="standard"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Integrations */}
+          <TabsContent value="integrations">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Package className="h-5 w-5 text-blue-600" />
+                  System Integrations
+                </CardTitle>
+                <CardDescription>
+                  Manage third-party service connections and data synchronization
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* EMR System */}
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <Database className="h-5 w-5 text-blue-600" />
+                        <div>
+                          <h4 className="font-semibold">{settings.integrations.emrSystem.name}</h4>
+                          <p className="text-sm text-gray-600">Electronic Medical Records</p>
+                        </div>
+                      </div>
+                      <Badge variant="default" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Connected
+                      </Badge>
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Last Sync: {new Date(settings.integrations.emrSystem.lastSync).toLocaleString()}</p>
+                      <p>Frequency: {settings.integrations.emrSystem.syncFrequency}</p>
+                    </div>
+                    <Button variant="outline" size="sm" className="mt-3">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Configure
+                    </Button>
+                  </div>
+
+                  {/* Payment Processor */}
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <CreditCard className="h-5 w-5 text-green-600" />
+                        <div>
+                          <h4 className="font-semibold">{settings.integrations.paymentProcessor.name}</h4>
+                          <p className="text-sm text-gray-600">Payment Processing</p>
+                        </div>
+                      </div>
+                      <Badge variant="default" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Connected
+                      </Badge>
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Last Sync: {new Date(settings.integrations.paymentProcessor.lastSync).toLocaleString()}</p>
+                      <p>Frequency: {settings.integrations.paymentProcessor.syncFrequency}</p>
+                    </div>
+                    <Button variant="outline" size="sm" className="mt-3">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Configure
+                    </Button>
+                  </div>
+
+                  {/* Lab System */}
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <TestTube className="h-5 w-5 text-purple-600" />
+                        <div>
+                          <h4 className="font-semibold">{settings.integrations.labSystem.name}</h4>
+                          <p className="text-sm text-gray-600">Laboratory Results</p>
+                        </div>
+                      </div>
+                      <Badge variant="default" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Connected
+                      </Badge>
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Last Sync: {new Date(settings.integrations.labSystem.lastSync).toLocaleString()}</p>
+                      <p>Frequency: {settings.integrations.labSystem.syncFrequency}</p>
+                    </div>
+                    <Button variant="outline" size="sm" className="mt-3">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Configure
+                    </Button>
+                  </div>
+
+                  {/* Insurance Verification */}
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <Shield className="h-5 w-5 text-orange-600" />
+                        <div>
+                          <h4 className="font-semibold">{settings.integrations.insuranceVerification.name}</h4>
+                          <p className="text-sm text-gray-600">Insurance Verification</p>
+                        </div>
+                      </div>
+                      <Badge variant="default" className="bg-green-100 text-green-800">
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Connected
+                      </Badge>
+                    </div>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Last Sync: {new Date(settings.integrations.insuranceVerification.lastSync).toLocaleString()}</p>
+                      <p>Frequency: {settings.integrations.insuranceVerification.syncFrequency}</p>
+                    </div>
+                    <Button variant="outline" size="sm" className="mt-3">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Configure
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* System Monitoring */}
+          <TabsContent value="system">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Monitor className="h-5 w-5 text-gray-600" />
+                  System Monitoring
+                </CardTitle>
+                <CardDescription>
+                  Real-time system performance and health metrics
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* System Status */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">System Status</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Server className="h-5 w-5 text-green-600" />
+                          <div>
+                            <p className="font-medium">Server Status</p>
+                            <p className="text-sm text-gray-600">Main application server</p>
+                          </div>
+                        </div>
+                        <Badge variant="default" className="bg-green-100 text-green-800">
+                          {settings.system.serverStatus}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Database className="h-5 w-5 text-blue-600" />
+                          <div>
+                            <p className="font-medium">Database Status</p>
+                            <p className="text-sm text-gray-600">PostgreSQL database</p>
+                          </div>
+                        </div>
+                        <Badge variant="default" className="bg-green-100 text-green-800">
+                          {settings.system.databaseStatus}
+                        </Badge>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Brain className="h-5 w-5 text-purple-600" />
+                          <div>
+                            <p className="font-medium">AI Service Status</p>
+                            <p className="text-sm text-gray-600">AI processing services</p>
+                          </div>
+                        </div>
+                        <Badge variant="default" className="bg-green-100 text-green-800">
+                          {settings.system.aiServiceStatus}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Performance Metrics */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Performance Metrics</h3>
+                    <div className="space-y-3">
+                      <div className="p-3 border rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium">System Uptime</span>
+                          <span className="text-sm text-gray-600">{settings.system.uptime}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-green-600 h-2 rounded-full" style={{ width: "99.9%" }}></div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 border rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium">Response Time</span>
+                          <span className="text-sm text-gray-600">{settings.system.responseTime}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-blue-600 h-2 rounded-full" style={{ width: "85%" }}></div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 border rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium">Memory Usage</span>
+                          <span className="text-sm text-gray-600">{settings.system.memoryUsage}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-yellow-600 h-2 rounded-full" style={{ width: "68%" }}></div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 border rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium">CPU Usage</span>
+                          <span className="text-sm text-gray-600">{settings.system.cpuUsage}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-orange-600 h-2 rounded-full" style={{ width: "42%" }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Storage Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Storage Information</h3>
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <HardDrive className="h-5 w-5 text-gray-600" />
+                        <div>
+                          <p className="font-medium">Storage Used</p>
+                          <p className="text-sm text-gray-600">{settings.system.storageUsed} of 5TB</p>
+                        </div>
+                      </div>
+                      <Badge variant="secondary">46% Used</Badge>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-gray-600 h-2 rounded-full" style={{ width: "46%" }}></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Backup Information */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Backup Information</h3>
+                  <div className="p-4 border rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <Cloud className="h-5 w-5 text-blue-600" />
+                        <div>
+                          <p className="font-medium">Last Backup</p>
+                          <p className="text-sm text-gray-600">
+                            {new Date(settings.system.lastBackup).toLocaleString()}
+                          </p>
+                        </div>
+                      </div>
+                      <Button variant="outline" size="sm">
+                        <RefreshCw className="h-4 w-4 mr-2" />
+                        Backup Now
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           {/* Clinic Information */}
           <TabsContent value="clinic">
