@@ -220,8 +220,6 @@ const aiInsights = [
     priority: "high",
     confidence: 96,
     timeframe: "24 hours",
-    impact: "High Priority",
-    priority: "high",
     icon: AlertTriangle,
     color: "text-red-600",
     bgColor: "bg-red-50",
@@ -476,7 +474,7 @@ export default function AnalyticsPage() {
                       <XAxis dataKey="month" />
                       <YAxis />
                       <Tooltip 
-                        formatter={(value: any, name: string) => [
+                        formatter={(value: number, name: string) => [
                           `$${value.toLocaleString()}`, 
                           name === "revenue" ? "Actual Revenue" : 
                           name === "aiPredictions" ? "AI Prediction" :
@@ -520,7 +518,7 @@ export default function AnalyticsPage() {
                       <XAxis dataKey="month" />
                       <YAxis />
                       <Tooltip 
-                        formatter={(value: any, name: string) => [
+                        formatter={(value: number, name: string) => [
                           value, 
                           name === "appointments" ? "Appointments" :
                           name === "patientSatisfaction" ? `${value}/5 Rating` :

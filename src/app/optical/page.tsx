@@ -282,7 +282,7 @@ export default function OpticalPage() {
                 <div>
                   <p className="text-sm text-gray-600">Revenue Potential</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    ${mockFrames.reduce((sum, frame) => sum + (frame.salesData.monthlySales * frame.price), 0).toLocaleString()}
+                    ${mockFrames.reduce((sum, frame) => sum + ((frame.salesData?.monthlySales || 0) * frame.price), 0).toLocaleString()}
                   </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-blue-600" />
@@ -527,35 +527,35 @@ export default function OpticalPage() {
                               <div className="p-2 bg-purple-50 rounded text-center">
                                 <div className="text-xs text-gray-600">AI Score</div>
                                 <div className="text-sm font-medium text-purple-600">
-                                  {frame.aiInsights.recommendationScore}%
+                                  {frame.aiInsights?.recommendationScore || 0}%
                                 </div>
                               </div>
                               <div className="p-2 bg-green-50 rounded text-center">
                                 <div className="text-xs text-gray-600">Sales Prob</div>
                                 <div className="text-sm font-medium text-green-600">
-                                  {frame.aiInsights.salesProbability}%
+                                  {frame.aiInsights?.salesProbability || 0}%
                                 </div>
                               </div>
                               <div className="p-2 bg-blue-50 rounded text-center">
                                 <div className="text-xs text-gray-600">Monthly Sales</div>
                                 <div className="text-sm font-medium text-blue-600">
-                                  {frame.salesData.monthlySales}
+                                  {frame.salesData?.monthlySales || 0}
                                 </div>
                               </div>
                               <div className="p-2 bg-yellow-50 rounded text-center">
                                 <div className="text-xs text-gray-600">Conversion</div>
                                 <div className="text-sm font-medium text-yellow-600">
-                                  {(frame.salesData.conversionRate * 100).toFixed(0)}%
+                                  {((frame.salesData?.conversionRate || 0) * 100).toFixed(0)}%
                                 </div>
                               </div>
                             </div>
 
                             {/* AI Recommendations */}
                             <div className="flex items-center space-x-4 text-xs text-gray-500">
-                              <span>Customer Match: {frame.aiInsights.customerMatch}</span>
-                              <span>Trend: {frame.aiInsights.trendDirection}</span>
-                              <span>Season: {frame.aiInsights.seasonality}</span>
-                              <span>Margin: {(frame.salesData.profitMargin * 100).toFixed(0)}%</span>
+                              <span>Customer Match: {frame.aiInsights?.customerMatch || 'N/A'}</span>
+                              <span>Trend: {frame.aiInsights?.trendDirection || 'N/A'}</span>
+                              <span>Season: {frame.aiInsights?.seasonality || 'N/A'}</span>
+                              <span>Margin: {((frame.salesData?.profitMargin || 0) * 100).toFixed(0)}%</span>
                             </div>
                           </div>
                         </div>

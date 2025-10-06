@@ -24,6 +24,7 @@ import {
   Zap,
   Activity,
   CheckCircle,
+  Target,
   Settings,
   Database,
   Cloud,
@@ -110,7 +111,11 @@ export default function SettingsPage() {
         status: "connected",
         lastSync: "2024-01-20T10:15:00Z",
         syncFrequency: "real-time"
-      }
+      },
+      openaiApiKey: "sk-proj-abc123...",
+      claudeApiKey: "sk-ant-abc123...",
+      nucleusApiKey: "nuc-abc123...",
+      databaseUrl: "postgresql://user:pass@localhost:5432/eyecare"
     },
     system: {
       serverStatus: "online",
